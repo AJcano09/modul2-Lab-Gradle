@@ -1,0 +1,28 @@
+tasks.register("hello-proctor") {
+ group = 'Greeting'
+ description = 'Produces a greeting to Instructor'
+ doLast {
+ println 'Hello, Proctor'
+ }
+}
+tasks.register("hello-student") {
+ group = 'Greeting'
+ description = 'Produces a greeting to Student'
+ doLast {
+ println 'Hello, Guy'
+ }
+}
+tasks.register("eat") {
+ group = 'Personal'
+ description = 'I can eat'
+ doLast {
+ println "I'm eating"
+ }
+}
+tasks.register("run") {
+ group = 'Personal'
+ description = 'I can run'
+ doLast {
+ println "I'm running"
+ }
+}

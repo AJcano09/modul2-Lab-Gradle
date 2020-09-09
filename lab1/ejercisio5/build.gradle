@@ -1,0 +1,22 @@
+ task hello {
+       doLast {
+              println 'Hello Earth'
+        }
+ }
+   
+ hello.doFirst {
+         println 'hello venus'
+ }
+ 
+ hello.configure {
+      doLast {
+            println 'hello Mars'
+        }
+ }
+  
+  hello.configure {
+          doLast {
+  println'Hellow Jupiter'
+      }
+ }
+
