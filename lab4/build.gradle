@@ -1,0 +1,39 @@
+import com.mkring.wildlydeplyplugin.DeployWildflyTask
+
+plugins {
+     id 'war'
+     id 'com.mkring.wildlydeplyplugin.deploy-wildfly-plugin' version '0.2.10'
+}
+
+group = 'ni.edu.tecnasa'
+version = '1.0-SNAPSHOT'
+repositories {
+         mavenCentral()
+       maven {
+             url 'https://repository.jboss.org/nexus/content/groups/public-jboss'
+           }
+       maven {
+             url 'https://repository.jboss.org/nexus/content/repositories'
+           }
+       maven {
+             url 'https://repository.jboss.org/nexus/content/repositories/thirdparty-releases'
+         }
+       maven {
+             url 'https://plugins.gradle.org/m2/'
+         }
+}
+
+dependencies {
+       providedCompile 'org.wildfly:wildfly-spec-api:16.0.0.Final'
+}
+
+task deploy(type: DeployWildflyTask) {
+     host = envHostJBoss
+     port = envPortJBoss as Integer
+     user = envUserJBoss
+     password = envPasswordUserJBoss
+     deploymentName = project.name
+     runtimeName = project.name + '-' + version + '.war'
+     undeployBeforehand = true
+     file = "${buildDir}/libs/${project.name}-${version}.war"
+}
